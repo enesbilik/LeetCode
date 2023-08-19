@@ -1,23 +1,27 @@
 public class Solution {
     public int LengthOfLongestSubstring(string text) {
-        if (string.IsNullOrEmpty(text))
-            return 0;
+        if (text.Length == 1) return 1;
 
-        int maxLength = 0;
-        int start = 0;
-        var charIndices = new Dictionary<char, int>();
+        int count = 0;
+        string s_result = string.Empty;
 
-        for (int end = 0; end < text.Length; end++)
+        foreach (char i in text)
         {
-            if (charIndices.ContainsKey(text[end]) && charIndices[text[end]] >= start)
+            if (!s_result.Contains(i))
             {
-                start = charIndices[text[end]] + 1;
+                s_result += i;
             }
-            
-            charIndices[text[end]] = end;
-            maxLength = Math.Max(maxLength, end - start + 1);
+            else
+            {
+                s_result = s_result.Substring(s_result.IndexOf(i) + 1) + i;
+            }
+
+            if (s_result.Length > count)
+            {
+                count = s_result.Length;
+            }
         }
 
-        return maxLength;
+        return count;
     }
 }
