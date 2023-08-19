@@ -5,7 +5,7 @@ public class Solution {
 
         int maxLength = 0;
         int start = 0;
-        Dictionary<char, int> charIndices = new Dictionary<char, int>();
+        var charIndices = new Dictionary<char, int>();
 
         for (int end = 0; end < text.Length; end++)
         {
